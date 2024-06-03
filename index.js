@@ -1,39 +1,45 @@
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-    const car = document.getElementById('car');
-    let posX = window.innerWidth / 2 - 50; // Başlangıçta ekranın ortasında
-    let posY = window.innerHeight / 2 - 25;
-    let rotation = 0;
-    const step = 5;
-    const rotationStep = 5;
+let url = "https://api.openweathermap.org/data/2.5/weather?q=Baku&appid=71c9b63ff2dd29a06f37a2e36e904f4d";
+let city = document.getElementById("city");
+let desc = document.getElementById("desc");
+let weatherImg = document.getElementById("weatherImg");
 
-    let keys = {};
+async function SendRequest(url) {
+  return fetch(url).then((response) => response.json());
+}
 
-    function moveCar() {
-        if (keys['ArrowUp']) {
-            posX += step * Math.cos(rotation * Math.PI / 180);
-            posY += step * Math.sin(rotation * Math.PI / 180);
-        }
-        if (keys['ArrowDown']) {
-            posX -= step * Math.cos(rotation * Math.PI / 180);
-            posY -= step * Math.sin(rotation * Math.PI / 180);
-        }
-        if (keys['ArrowLeft']) {
-            rotation -= rotationStep;
-        }
-        if (keys['ArrowRight']) {
-            rotation += rotationStep;
-        }
-        car.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotation}deg)`;
-    }
+function GetData() {
+  SendRequest(url)
+    .then((data) => {
+      let weatherMain = data.weather[0].main;
+      let temperature = data.main.temp;
 
-    document.addEventListener('keydown', (event) => {
-        keys[event.key] = true;
+      switch(weatherMain){
+        case "Clouds":
+          weatherImg.src = "/images/cloudy.png";
+          break;
+        case "Clear":
+          weatherImg.src = "/images/clear.png";
+          break;
+        case "Rain":
+          weatherImg.src = "/images/rainy.png";
+          break;
+        case "Drizzle":
+          weatherImg.src = "/images/drizzle.png";
+          break;
+        case "Mist":
+          weatherImg.src = "/images/mist.png";
+          break;
+        default:
+          weatherImg.src = "/images/clear.png";
+          break;
+      }
+
+      desc.innerHTML =`${Math.round(temperature - 273.15)}°C`;
+      city.innerHTML = data.name;
+    })
+    .catch((error) => {
+      console.error(error);
     });
+}
 
-    document.addEventListener('keyup', (event) => {
-        keys[event.key] = false;
-    });
-
-    setInterval(moveCar, 20);
-});
+GetData();
