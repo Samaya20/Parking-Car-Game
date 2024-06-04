@@ -5,6 +5,7 @@
     text-decoration: none;
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.3s;
 }
 
 @mixin alignment($display, $direction, $justify-content, $align-items) {
@@ -30,6 +31,7 @@
     background-position: center;
     background-size: cover;
     padding: 20px 0;
+    z-index: 99;
 
     .container {
         @include alignment(flex, row, space-between, start);
@@ -49,7 +51,6 @@
             button {
                 margin: 30px 0;
                 padding: 20px 30px;
-                transition: all 0.3s;
                 transform: scale(1);
                 animation: bounce 500ms infinite alternate-reverse;
                 border-radius: 5px;
@@ -120,9 +121,9 @@
             width: 60px;
             position: absolute;
             top: 0;
-            left: 0;    
+            left: 0;
             right: 0;
-            bottom: 0;  
+            bottom: 0;
         }
     }
 }

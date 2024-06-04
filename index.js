@@ -1,3 +1,4 @@
+
 // Weather status fetching
 
 let url = "https://api.openweathermap.org/data/2.5/weather?q=Baku&appid=71c9b63ff2dd29a06f37a2e36e904f4d";
@@ -12,7 +13,7 @@ function GetData() {
       let weatherMain = data.weather[0].main;
       let temperature = data.main.temp;
 
-      switch(weatherMain) {
+      switch (weatherMain) {
         case "Clouds":
           $("#weatherImg").attr("src", "/images/cloudy.png");
           break;
@@ -46,13 +47,15 @@ $(document).ready(function () {
 });
 
 
+
+
 // Game starting process
 
-$("#startBtn").on("click", ()=>{
+$("#startBtn").on("click", () => {
   StartGame();
 })
 
 
-function StartGame(){
-  $(".game-start").css({"opacity": 0, "visibiltiy":"hidden"});
+function StartGame() {
+  $(".game-start").css({ "opacity": 0, "visibiltiy": "hidden" });
 }
