@@ -26,6 +26,7 @@
   background-position: center;
   background-size: cover;
   padding: 20px 0;
+  z-index: 99;
 }
 .game-start .container {
   display: flex;
