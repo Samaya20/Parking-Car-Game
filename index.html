@@ -5,33 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/images/favicon.png">
     <title>Parking Car Game</title>
 </head>
 
 <body>
 
     <!-- Game Start Window -->
-    <section class="game-start">
-        <div id="weather">
-            <img id="weatherImg" src="">
-            <span id="desc"></span>
-            <h1 id="city"></h1>
+    <!-- <section class="game-start">
+        <div class="container">
+            <div class="starting">
+                <img src="/images/logo.png" alt="logo">
+                <button id="startBtn">Start Game</button>
+            </div>
+            <div id="weather">
+                <img id="weatherImg" src="">
+                <span id="desc"></span>
+                <h1 id="city"></h1>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- Game Board Window -->
+    <section class="game-board">
+        <div class="container">
+            <img id="board-bg" src="/images/board.jpg">
+            <div id="frame">
+                <img id="car" src="/images/car.png" />
+            </div>
         </div>
     </section>
 
 
-    <!-- Game Board Window -->
-    <!-- <section class="game-board">
-        <img id="car" src="car.png" />
-    </section> -->
-
-
     <!-- Game End Window -->
-<!-- 
+    <!-- 
     <section class="game-end">
 
     </section> -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/index.js"></script>
 </body>
 

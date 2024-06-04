@@ -1,7 +1,6 @@
+// Weather status fetching
+
 let url = "https://api.openweathermap.org/data/2.5/weather?q=Baku&appid=71c9b63ff2dd29a06f37a2e36e904f4d";
-let city = document.getElementById("city");
-let desc = document.getElementById("desc");
-let weatherImg = document.getElementById("weatherImg");
 
 async function SendRequest(url) {
   return fetch(url).then((response) => response.json());
@@ -13,33 +12,47 @@ function GetData() {
       let weatherMain = data.weather[0].main;
       let temperature = data.main.temp;
 
-      switch(weatherMain){
+      switch(weatherMain) {
         case "Clouds":
-          weatherImg.src = "/images/cloudy.png";
+          $("#weatherImg").attr("src", "/images/cloudy.png");
           break;
         case "Clear":
-          weatherImg.src = "/images/clear.png";
+          $("#weatherImg").attr("src", "/images/clear.png");
           break;
         case "Rain":
-          weatherImg.src = "/images/rainy.png";
+          $("#weatherImg").attr("src", "/images/rainy.png");
           break;
         case "Drizzle":
-          weatherImg.src = "/images/drizzle.png";
+          $("#weatherImg").attr("src", "/images/drizzle.png");
           break;
         case "Mist":
-          weatherImg.src = "/images/mist.png";
+          $("#weatherImg").attr("src", "/images/mist.png");
           break;
         default:
-          weatherImg.src = "/images/clear.png";
+          $("#weatherImg").attr("src", "/images/clear.png");
           break;
       }
 
-      desc.innerHTML =`${Math.round(temperature - 273.15)}°C`;
-      city.innerHTML = data.name;
+      $("#desc").text(`${Math.round(temperature - 273.15)}°C`);
+      $("#city").text(data.name);
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-GetData();
+$(document).ready(function () {
+  GetData();
+});
+
+
+// Game starting process
+
+$("#startBtn").on("click", ()=>{
+  StartGame();
+})
+
+
+function StartGame(){
+  $(".game-start").css({"opacity": 0, "visibiltiy":"hidden"});
+}
