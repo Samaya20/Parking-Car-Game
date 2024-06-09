@@ -238,4 +238,8 @@
 
 .parking-line:nth-child(2) {
   top: 60%;
+}
+
+.levels-board button:disabled {
+  background-color: #ccc;
 }/*# sourceMappingURL=style.css.map */
